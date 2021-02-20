@@ -1,0 +1,19 @@
+# Ignored files & directories
+misc/*
+!misc/git
+config/**/*-bak
+config/**/*-orig
+config/**/*-default
+zsh/cache
+zsh/.zcompdump
+scripts/volumectl.sh
+config/kitty
+!config/kitty/kitty.conf
+!config/kitty/theme.conf
+config/mpd
+!config/mpd/mpd.conf
+config/ncmpcpp
+!config/ncmpcpp/config
+!config/ncmpcpp/bindings
+config/ranger/plugins
+config/ranger/colorschemes

@@ -1,0 +1,151 @@
+#!/usr/bin/zsh
+###################################################################################
+#############                      aliasrc file                       #############
+#############          https://github.com/techyArsal/dotfiles         #############
+###################################################################################
+
+## Colorize the grep command output for ease of use (good for log files)##
+alias grep='grep --color=always'
+alias egrep='egrep --color=always'
+alias fgrep='fgrep --color=always'
+
+## bat command
+alias bat-pager='bat --paging=always'
+
+## always use neovim
+alias vim="nvim "
+
+## readable output
+alias df='df -h'
+
+## pacman unlock
+alias unlock="sudo rm /var/lib/pacman/db.lck"
+
+## free
+alias free="free -mt"
+
+## continue download
+alias wget="wget -c"
+
+## userlist
+alias userlist="cut -d: -f1 /etc/passwd"
+
+## Load new .Xresources configs
+alias load="xrdb -load ~/.Xresources"
+
+## Aliases for package managers
+# pacman/yay/trizen
+alias pacman='sudo pacman '
+
+# yay install/remove/update
+alias yayi='yay --noremovemake --nodiffmenu --editmenu --needed -S '
+alias yayr='yay -R '
+alias yayu='yay -Syy'
+
+## yay update everything
+alias pksyua="yay -Syu --noconfirm"
+
+## Recent Installed Packages
+alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -100"
+
+## Cleanup orphaned packages
+alias cleanup='yay -Rns $(yay -Qtdq)'
+
+## ps
+alias ps="ps auxf"
+alias psgrep="ps aux | grep -v grep | grep -i -e VSZ -e"
+
+## improve png
+alias fixpng="find . -type f -name '*.png' -exec convert {} -strip {} \;"
+
+## hardware info --short
+alias hw="hwinfo --short"
+
+## check vulnerabilities microcode
+alias microcode='grep . /sys/devices/system/cpu/vulnerabilities/*'
+
+## Get fastest mirrors in your neighborhood (Arch repos)
+alias mirror="sudo reflector --latest 5 -p "https" --verbose --sort rate --save /etc/pacman.d/mirrorlist"
+alias mirrord="sudo reflector --latest 5 -p "https" --verbose --sort delay --save /etc/pacman.d/mirrorlist"
+
+## Get fastest mirrors in your neighborhood (Manjaro repos)
+#alias mirror="sudo pacman-mirrors -g"
+
+## youtube-dl
+alias yt="youtube-dl -F "
+alias yta-aac="youtube-dl --extract-audio --audio-format aac "
+alias yta-best="youtube-dl --extract-audio --audio-format best "
+alias yta-flac="youtube-dl --extract-audio --audio-format flac "
+alias yta-m4a="youtube-dl --extract-audio --audio-format m4a "
+alias yta-mp3="youtube-dl --extract-audio --audio-format mp3 "
+alias yta-opus="youtube-dl --extract-audio --audio-format opus "
+alias yta-vorbis="youtube-dl --extract-audio --audio-format vorbis "
+alias yta-wav="youtube-dl --extract-audio --audio-format wav "
+
+alias ytv-best="youtube-dl -f bestvideo+bestaudio "
+alias ytv-720="youtube-dl -f 22 "
+alias ytv-1080="youtube-dl -f 137+251 "
+
+## Swap on/off
+alias swon="sudo swapon -a"
+alias swoff="sudo swapoff -a"
+
+## Restart NetworkManager
+alias NetReset="sudo systemctl restart NetworkManager"
+
+## Restart DNSCrypt-proxy Service
+#alias DNSReset="sudo systemctl restart dnscrypt-proxy"
+
+## Edit i3-config
+alias i3rc="$EDITOR ~/.config/i3/config"
+
+## Edit Picom-config
+alias pirc="$EDITOR ~/.config/picom/picom.conf"
+
+## Edit Termite-config
+alias termrc="$EDITOR ~/.config/termite/config"
+
+# Edit Kitty-config
+alias krc="$EDITOR ~/.config/kitty/kitty.conf"
+
+## Edit Polybar-config
+alias polrc="$EDITOR ~/.config/polybar/config"
+
+## Edit aliasrc
+alias aliasrc="$EDITOR $ZDOTDIR/aliasrc"
+
+## Edit zshrc
+alias zrc="$EDITOR $ZDOTDIR/.zshrc"
+
+## Edit bashrc
+alias brc="$EDITOR $DOTDIR/bash/.bashrc"
+
+## Edit vimrc file
+alias vrc="$EDITOR ~/.vim/vimrc"
+
+## Edit nvim config
+alias nrc="$EDITOR ~/.config/nvim/init.vim"
+
+## Edit ranger configs
+alias rrc="$EDITOR ~/.config/ranger/rc.conf"
+
+## Edit ranger rifle
+alias rrifle="$EDITOR ~/.config/ranger/rifle.conf"
+
+## Theme colors
+alias clrs="$EDITOR $DOTDIR/misc/colors"
+
+## Kitty diff command
+alias kdiff="kitty +kitten diff "
+
+## dd for writing ISOs
+alias dd="sudo dd bs=4M status=progress "
+
+## nmcli - Network Manager CLI utility
+alias net-status="nmcli -p -c auto"
+
+## ProtonVPN
+alias protonvpn="sudo protonvpn "
+
+## Docker command
+alias docker="sudo docker "

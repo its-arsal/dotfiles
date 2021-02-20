@@ -1,0 +1,93 @@
+################################################
+##             Termite config file
+##     https://github.com/techyArsal/dotfiles
+################################################
+
+[options]
+
+allow_bold = true
+audible_bell = false
+browser = $BROWSER
+clickable_url = true
+cursor_blink = system
+cursor_shape = block
+dynamic_title = true
+filter_unmatched_urls = true
+font =  Fira Code Retina 12
+geometry = 900x650
+highlight = #2f2f2f
+icon_name = terminal
+modify_other_keys = false
+mouse_autohide = false
+scroll_on_output = false
+scroll_on_keystroke = true
+scrollback_lines = 100000
+size_hints = false
+search_wrap = true
+urgent_on_bell = true
+
+[hints]
+
+#font = Droid Sans Mono 12
+#foreground = #dcdccc
+#background = #3f3f3f
+#active_foreground = #e68080
+#active_background = #3f3f3f
+#padding = 50
+#border = #3f3f3f
+#border_width = 10
+#roundness = 2.0
+
+#######################################################################
+#### You can change the color coding to your liking
+#### There is a folder themes in ~/config/termite/themes
+#### Copy/paste the colors from one of the 79+ templates to this one
+#### A backup of the original config termite is present
+#######################################################################
+#### Use websites to make the terminal your own
+#### https://terminal.sexy
+#### https://critical.ch/xterm/
+#######################################################################
+
+## Isotope (dark) - Theme for termite
+## Source: http://terminal.sexy/
+
+[colors]
+
+## special
+foreground      = #ffffff
+foreground_bold = #ffffff
+cursor          = #F06A00
+background      = rgba(0,0,0,0.9)
+
+## black
+color0  = #002b36
+color8  = #657b83
+
+## red
+color1  = #ff322f
+color9  = #ff322f
+
+## green
+color2  = #33ff00
+color10 = #33ff00
+
+## yellow
+color3  = #ff0099
+color11 = #ff0099
+
+## blue
+color4  = #26bbff
+color12 = #26bbff
+
+## magenta
+color5  = #cd00ff
+color13 = #cd00ff
+
+## cyan
+color6  = #00ffff
+color14 = #00ffff
+
+## white
+color7  = #d0d0d0
+color15 = #ffffff

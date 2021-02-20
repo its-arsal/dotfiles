@@ -1,0 +1,357 @@
+###############################################
+###           i3wm config file
+###   https://github.com/techyArsal/dotfiles
+###############################################
+# vim: ft=cfg
+
+# KEY DEFINITIONS TO REMEMBER
+
+# Mod4 = WINDOWS key or Super key
+# Mod1 = ALT key
+# Ctrl = Control key
+# Shift = SHIFT key
+# Escape = ESCAPE key
+# Return = ENTER or RETURN key
+# KP_Enter = Keypad Enter
+# Pause = PAUSE key
+# Print = PRINT key
+# Tab = TAB key
+
+###################
+###   Workspaces
+###################
+
+## Set super/win key as mod
+set $mod Mod4
+
+## Switch workspaces
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+
+## move focused window to a workspace
+bindsym $mod+Shift+1 move container to workspace 1; workspace 1
+bindsym $mod+Shift+2 move container to workspace 2; workspace 2
+bindsym $mod+Shift+3 move container to workspace 3; workspace 3
+bindsym $mod+Shift+4 move container to workspace 4; workspace 4
+bindsym $mod+Shift+5 move container to workspace 5; workspace 5
+bindsym $mod+Shift+6 move container to workspace 6; workspace 6
+bindsym $mod+Shift+7 move container to workspace 7; workspace 7
+bindsym $mod+Shift+8 move container to workspace 8; workspace 8
+
+## lock the screen
+bindsym $mod+9 exec --no-startup-id lock.sh
+
+## restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+## reload the configuration file
+bindsym $mod+Shift+c reload
+
+## kill focused window
+bindsym $mod+Shift+q kill
+bindsym $mod+q kill
+
+## Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+## toggle tiling/floating
+bindsym $mod+Shift+space floating toggle
+
+## Change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+## move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+## Next/previous workspace
+bindsym $mod+Ctrl+l workspace next
+bindsym $mod+Ctrl+h workspace prev
+bindsym $mod+Tab workspace next
+bindsym $mod+Escape workspace prev
+
+## switch to workspace with urgent window automatically
+for_window [urgent=latest] focus
+
+## orientation for new workspaces
+default_orientation horizontal
+
+## split in horizontal orientation
+bindsym $mod+mod1+h split h
+
+## split in vertical orientation
+bindsym $mod+mod1+v split v
+
+## enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+## change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+## Resize width & height
+bindsym mod1+h resize grow width 10 px or 10 ppt
+bindsym mod1+j resize shrink height 10 px or 10 ppt
+bindsym mod1+k resize grow height 10 px or 10 ppt
+bindsym mod1+l resize shrink width 10 px or 10 ppt
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+# choose your font
+font pango: JetBrains Mono Medium Nerd Font Complete 12
+
+#####################################################################################################################
+#################                          Assign applications to workspaces                        #################
+#####################################################################################################################
+
+## Assign application to start on a specific workspace
+## you can find the class with the program xprop
+
+## Workspace 1 htop and stat related
+#assign [class=""] → 1
+
+## Workspace 2 browser related
+assign [class="firefox|Vivaldi-stable|Vivaldi-snapshot|Opera"] → 2
+assign [class="Chromium|Google-chrome"] → 2
+
+## Workspace 3 text editor and IDE related
+assign [class="sublime-text|sublime_text|Sublime_text|subl|Subl|subl3|Subl3"] → 3
+assign [class="Xed|xed|Brackets|Atom|Code|Geany"] → 3
+
+## Workspace 5 Gimp
+assign [class="Gimp"] → 5
+assign [class="Meld"] → 5
+
+## Workspace 6 Images and stuff
+#assign [class="ristretto|Ristretto|shotwell|Shotwell|Xviewer|Nitrogen"] → 6
+#assign [class="feh|gthumb|Gthumb|eog|Eog|Pinta|pixeluvo|Pixeluvo"] → 6
+
+## Workspace 7 virtual machines and settings
+#assign [class="Vmplayer|VirtualBox"]			                        			 → 7
+
+## Workspace 8 multimedia related
+assign [class="vlc|Vlc|VLC"] → 8
+assign [class="Spotify|spotify"] → 8
+
+##fix for spotify not moving to workspace 8
+#for_window [class="Spotify"] move to workspace 8
+
+#####################################################################################################################
+#################                          execute applications at boot time                        #################
+#####################################################################################################################
+
+## applications that are not installed will not start
+
+## Authtencation agent, power management, notifications
+#exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+#exec --no-startup-id sleep 10 && /usr/lib/xfce4/notifyd/xfce4-notifyd &
+#exec --no-startup-id sleep 3 && xfce4-power-manager &
+exec_always --no-startup-id xset dpms 0 0 300
+exec --no-startup-id sleep 5 && /usr/bin/lxpolkit &
+exec --no-startup-id sleep 5 && dunst &
+
+## Restore the previously used background
+exec --no-startup-id nitrogen --restore
+
+## Keyboard tweaks
+exec --no-startup-id setxkbmap -option caps:escape
+exec_always --no-startup-id xset r rate 250 50
+
+## Numlock activated
+exec_always --no-startup-id numlockx on
+
+## Reload .Xresources configs
+exec_always --no-startup-id xrdb -merge ~/.Xresources
+
+## Re/Start Polybar
+exec_always --no-startup-id start-polybar.sh
+
+## Re/Start Picom
+exec_always --no-startup-id start-picom.sh
+
+## autolock.sh to lock i3wm automatically
+exec_always --no-startup-id autolock.sh -t 10
+
+## Start redshift
+exec --no-startup-id redshift &
+
+# Albert
+exec --no-startup-id sleep 10 && albert
+
+#exec --no-startup-id nm-applet &
+#exec --no-startup-id sleep 15 && caffeine &
+#exec --no-startup-id xfce4-clipman
+
+#####################################################################################################################
+#################                          applications keyboard shortcuts                          #################
+#####################################################################################################################
+
+## Terminal
+bindsym $mod+t exec --no-startup-id $TERMINAL;focus
+bindsym $mod+Return exec --no-startup-id $TERMINAL;focus
+bindsym $mod+KP_Enter exec --no-startup-id $TERMINAL;focus
+
+## rofi application launcher
+bindsym mod1+d exec --no-startup-id rofi -show run
+
+## mocp - music on console player
+bindsym $mod+m exec $TERMINAL -e ncmpcpp
+
+## ranger - file manager
+bindsym $mod+z exec $TERMINAL -e ranger
+
+## htop - system monitor
+bindsym $mod+s exec $TERMINAL -e htop
+
+## xkill
+#bindsym --release $mod+Escape exec xkill
+
+## Launch Web-Browser
+bindsym $mod+Shift+w exec --no-startup-id $BROWSER;focus
+bindsym $mod+w exec --no-startup-id $BROWSER_PRIVATE;focus
+
+## Launch file manager
+bindsym $mod+n exec --no-startup-id $FILE;focus
+bindsym $mod+Shift+Return exec --no-startup-id $FILE;focus
+bindsym $mod+Shift+KP_Enter exec --no-startup-id $FILE;focus
+
+bindsym Print exec --no-startup-id scrot 'ArchLinux-%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'
+
+#####################################################################################################################
+#################                          Floating Window configs                                        #################
+#####################################################################################################################
+
+## Floating enabled for some programs - find with xprop
+for_window [class="Peek"] floating enable
+for_window [class="albert"] floating enable
+for_window [class="^Gpick$"] floating enable
+for_window [class="^Skype$"] floating enable
+for_window [class="Galculator"] floating enable
+for_window [class="Imagewriter"] floating enable
+for_window [class="Font-manager"] floating enable
+for_window [class="Blueberry.py"] floating enable
+for_window [class="Unetbootin.elf"] floating enable
+for_window [class="Usb-creator-gtk"] floating enable
+for_window [class="Xfce4-appfinder"] floating enable
+for_window [class="java-lang-Thread"] floating enable
+for_window [class="Xfce4-taskmanager"] floating enable
+for_window [class="^Gnome-font-viewer$"] floating enable
+for_window [class="qt5ct|Lxappearance"] floating enable
+for_window [class="System-config-printer.py"] floating enable
+
+for_window [instance="variety"] floating enable
+
+for_window [title="Copying"] floating enable
+for_window [title="Deleting"] floating enable
+for_window [title="Moving"] floating enable
+for_window [title="^Terminator Preferences$"] floating enable
+
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="^Preferences$"] floating enable
+for_window [window_role="setup"] floating enable
+
+## Avoid tiling popups, dropdown windows from plasma
+## for the first time, manually resize them, i3 will remember the setting for floating windows
+for_window [class="plasmashell"] floating enable
+for_window [class="Plasma"] floating enable; border none
+for_window [title="plasma-desktop"] floating enable; border none
+for_window [title="win7"] floating enable; border none
+for_window [class="krunner"] floating enable; border none
+for_window [class="Kmix"] floating enable; border none
+for_window [class="Klipper"] floating enable; border none
+for_window [class="Plasmoidviewer"] floating enable; border none
+
+## Don’t let notifications and non-interactive pop-up windows steal focus
+no_focus [class="plasmashell" window_type="notification"]
+
+#####################################################################################################################
+#################                          audio settings                                           #################
+#####################################################################################################################
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id "volumectl.sh -inc"
+bindsym XF86AudioLowerVolume exec --no-startup-id "volumectl.sh -dec"
+bindsym XF86AudioMute exec --no-startup-id "volumectl.sh -mute"
+
+## https://github.com/acrisci/playerctl/
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+bindsym XF86AudioStop exec --no-startup-id playerctl stop
+
+bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5 ## increase screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5 ## decrease screen brightness
+
+#####################################################################################################################
+#################                          border control                                           #################
+#####################################################################################################################
+
+## Border control
+default_border none
+default_floating_border none
+hide_edge_borders both
+
+#bindsym $mod+u border none
+#bindsym $mod+shift+b exec --no-startup-id i3-msg border toggle
+
+## Popups during fullscreen mode
+popup_during_fullscreen smart
+
+gaps inner 10
+gaps outer 5
+#smart_gaps on
+
+#####################################################################################################################
+########################################         ---THE   END---          ###########################################
+#####################################################################################################################
+
+#####################################################################################################################
+#################                        Some extra (un-used) stuff                                 #################
+#####################################################################################################################
+
+#####################################################################################################################
+#################                          Scratchpad                                               #################
+#####################################################################################################################
+
+## move the currently focused window to the scratchpad
+# bindsym Mod1+Shift+minus move scratchpad
+
+## Show the next scratchpad window or hide the focused scratchpad window.
+## If there are multiple scratchpad windows, this command cycles through them.
+# bindsym Mod1+minus scratchpad show
+
+#####################################################################################################################
+#################                          mouse settings in i3                                     #################
+#####################################################################################################################
+
+## mouse settings
+## The middle button over a titlebar kills the window
+#bindsym --release button2 kill
+
+## The middle button and a modifer over any part of the window kills the window
+#bindsym --whole-window $mod+button2 kill
+
+## The right button toggles floating
+#bindsym button3 floating toggle
+#bindsym $mod+button3 floating toggle
+
+## The side buttons move the window around
+#bindsym button9 move left
+#bindsym button8 move right
+
+
+#####################################################################################################################
+#################                          unclutter                                                #################
+#####################################################################################################################
+
+## get the mouse out of the way with unclutter
+#exec --no-startup-id unclutter

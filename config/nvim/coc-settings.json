@@ -1,0 +1,10 @@
+{
+  "cssmodules.camelCase": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "markdown",
+    "html",
+    "javascript",
+    "json"
+  ]
+}

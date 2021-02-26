@@ -149,3 +149,10 @@ alias protonvpn="sudo protonvpn "
 
 ## Docker command
 alias docker="sudo docker "
+
+## Use kitty kitten for ssh
+alias ssh="kitty +kitten ssh "
+
+## Wireguard with typing sudo evertime
+alias wg="sudo wg "
+alias wg-quick="sudo wg-quick "
